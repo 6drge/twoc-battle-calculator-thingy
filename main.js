@@ -34,11 +34,13 @@ const formatVal = (val,precise = 3) =>{
 function battle() {
   var Text_A = document.getElementById("textA").value;
   var Text_B = document.getElementById("textB").value;
+  const A = Text_A.split(",").map(s => Number(s.trim()))
+  const B = Text_B.split(",").map(s => Number(s.trim()))
   const power1 =
-    const A = Text_A.split(",").map(s => Number(s.trim())).filter(n => !Number.isNaN(n)).reduce((acc, n) => acc * n, 1); //A.troops*A.firepower*A.discipline*A.command*A.supply*A.terrain*A.biome*A.morale*A.unity;
+    A.filter(n => !Number.isNaN(n)).reduce((acc, n) => acc * n, 1); //A.troops*A.firepower*A.discipline*A.command*A.supply*A.terrain*A.biome*A.morale*A[8];
 
   const power2 =
-    const B = Text_A.split(",").map(s => Number(s.trim())).filter(n => !Number.isNaN(n)).reduce((acc, n) => acc * n, 1); //B.troops*B.firepower*B.discipline*B.command*B.supply*B.terrain*B.biome*B.morale*B.unity;
+    B.filter(n => !Number.isNaN(n)).reduce((acc, n) => acc * n, 1); //B.troops*B.firepower*B.discipline*B.command*B.supply*B.terrain*B.biome*B.morale*B[8];
 const ratio1 = power1/(power1 + power2);
   const ratio2 = 1-ratio1;
 
@@ -53,8 +55,8 @@ const ratio1 = power1/(power1 + power2);
 
   const LowMorale1 = A.morale - moraleDamage1 <= 0.25;
   const LowMorale2 = B.morale - moraleDamage2 <= 0.25;
-  A.unity -= formatVal(lossFrac1 * (MaxStress - B.command) * Math.random() * 24.99,2);
-  B.unity -= formatVal(lossFrac1 * (MaxStress - B.command) * Math.random() * 24.99,2);
+  A[8] -= formatVal(lossFrac1 * (MaxStress - B.command) * Math.random() * 24.99,2);
+  B[8] -= formatVal(lossFrac1 * (MaxStress - B.command) * Math.random() * 24.99,2);
   A.morale -= moraleDamage1 * Math.random() * 2.99
   B.morale -= moraleDamage2 * Math.random() * 2.99
   A.supply -= lossFrac1 * (MaxStress - (Math.random() * 16.59 * 0.1 * (B.terrain/A.terrain) * (B.biome/A.biome)))
@@ -73,10 +75,10 @@ const ratio1 = power1/(power1 + power2);
   }
   var captured1=0;
   var captured2=0;
-  if (A.unity <= 0.25) {
+  if (A[8] <= 0.25) {
     captured1 = Math.round(Math.max(0, A.troops - losses1) * 0.28);
   }
-  if (B.unity <= 0.25) {
+  if (B[8] <= 0.25) {
     captured2 = Math.round(Math.max(0, B.troops - losses1) * 0.28);
   }
 
