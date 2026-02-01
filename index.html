@@ -54,6 +54,7 @@ align-items: center
   document.getElementById("wawa").addEventListener("click", start);
 function start() {
 let Battle = battle()
+  console.log(Battle)
 document.getElementById("winner").innerHTML = String(Battle[0]);
 document.getElementById("text_A").innerHTML = String(Battle[1]);
 document.getElementById("text_B").innerHTML = String(Battle[2]);
