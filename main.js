@@ -26,6 +26,11 @@ const MaxLoss = 0.8
 const FrontlineCollapse = 0.5
 const DisciplineMax = 1.2
 const MaxStress = 1.3
+
+const formatVal = (val,precise = 3) =>{
+  return Number(val).toFixed(precise)
+}
+
 function battle(A, B) {
   const power1 =
     A.troops*A.firepower*A.discipline*A.command*A.supply*A.terrain*A.biome*A.morale*A.unity;
@@ -46,8 +51,12 @@ const ratio1 = power1/(power1 + power2);
 
   const LowMorale1 = A.morale - moraleDamage1 <= 0.25;
   const LowMorale2 = B.morale - moraleDamage2 <= 0.25;
-  A.unity -= lossFrac1 * (MaxStress - B.command) * Math.random() * 24.99;
-  B.unity -= lossFrac2 * (MaxStress - A.command) * Math.random() * 24.99;
+  A.unity -= formatVal(lossFrac1 * (MaxStress - B.command) * Math.random() * 24.99,2);
+  B.unity -= formatVal(lossFrac1 * (MaxStress - B.command) * Math.random() * 24.99,2);
+  A.morale -= moraleDamage1 * Math.random() * 2.99
+  B.morale -= moraleDamage2 * Math.random() * 2.99
+  A.supply -= lossFrac1 * (MaxStress - (Math.random() * 16.59 * 0.1 * (B.terrain/A.terrain) * (B.biome/A.biome)))
+  B.supply -= lossFrac1 * (MaxStress - (Math.random() * 16.59 * 0.1 * (A.terrain/B.terrain) * (A.biome/B.biome)))
 
   if (LowMorale1 && !LowMorale2) {
     losses1 += Math.round(
@@ -91,5 +100,10 @@ const ratio1 = power1/(power1 + power2);
     B_captured: captured2
   };
 }
+
+var Text_A = document.getElementById("textA").value;
+  document.getElementById("text_A").innerHTML = Text_A;
+var Text_B = document.getElementById("textB").value;
+  document.getElementById("text_A").innerHTML = Text_A;
 
 console.log(battle(A,B))
