@@ -39,15 +39,15 @@ align-items: center
 <div class="fish">
   <button id="wawa2">use new data</button>
 </div>
-  <div class="fish"> <h3 id="winner">winner will appear here</h1> </div>
-  <div class="fish"> <h3 id="text_A">New Army A will appear here</h1> </div>
-  <div class="fish"> <h3 id="text_B">New Army A will appear here</h1> </div>
-  <div class="fish"> <h3 id="lossesA">winner will appear here</h1> </div>
-  <div class="fish"> <h3 id="lossesB">winner will appear here</h1> </div>
-  <div class="fish"> <h3 id="RetreatA">winner will appear here</h1> </div>
-  <div class="fish"> <h3 id="RetreatB">winner will appear here</h1> </div>
-  <div class="fish"> <h3 id="A_captured">amount of captured units will appear here</h1> </div>
-  <div class="fish"> <h3 id="B_captured">winner will appear here</h1> </div>
+  <div class="fish"> <h6 id="winner">winner will appear here</h6> </div>
+  <div class="fish"> <h6 id="text_A">New Army A will appear here</h6> </div>
+  <div class="fish"> <h6 id="text_B">New Army A will appear here</h6> </div>
+  <div class="fish"> <h6 id="lossesA">winner will appear here</h6> </div>
+  <div class="fish"> <h6 id="lossesB">winner will appear here</h6> </div>
+  <div class="fish"> <h6 id="RetreatA">winner will appear here</h6> </div>
+  <div class="fish"> <h6 id="RetreatB">winner will appear here</h6> </div>
+  <div class="fish"> <h6 id="A_captured">amount of captured units will appear here</h6> </div>
+  <div class="fish"> <h6 id="B_captured">winner will appear here</h6> </div>
 </div>
 <script src="main.js"></script>
 <script>
@@ -55,15 +55,15 @@ align-items: center
 function start() {
 let Battle = battle()
   console.log(Battle)
-document.getElementById("winner").innerHTML = String(Battle.winner);
-document.getElementById("text_A").innerHTML = String(Battle.A_New);
-document.getElementById("text_B").innerHTML = String(Battle.B_New);
-document.getElementById("lossesA").innerHTML = String(Battle.A_losses);
-document.getElementById("lossesB").innerHTML = String(Battle.B_losses);
-document.getElementById("RetreatA").innerHTML = String(Battle.Retreat1);
-document.getElementById("RetreatB").innerHTML = String(Battle.Retreat2);
-document.getElementById("A_captured").innerHTML = String(Battle.A_captured);
-document.getElementById("B_captured").innerHTML = String(Battle.B_captured);
+document.getElementById("winner").innerHTML = "winner: " + String(Battle.winner);
+document.getElementById("text_A").innerHTML = "new Army A: " + String(Battle.A_New);
+document.getElementById("text_B").innerHTML = "new Army B: " + String(Battle.B_New);
+document.getElementById("lossesA").innerHTML = "Losses on A side: " + String(Battle.A_losses);
+document.getElementById("lossesB").innerHTML = "Losses on B side: " + String(Battle.B_losses);
+document.getElementById("RetreatA").innerHTML = "A retreated?: " + String(Battle.Retreat1);
+document.getElementById("RetreatB").innerHTML = "B retreated?: " + String(Battle.Retreat2);
+document.getElementById("A_captured").innerHTML = "Amount of captured A fighters: " + String(Battle.A_captured);
+document.getElementById("B_captured").innerHTML = "Amount of captured B fighters" + String(Battle.B_captured);
 }
 </script>
 
