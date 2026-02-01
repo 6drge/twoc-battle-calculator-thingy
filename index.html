@@ -54,15 +54,15 @@ align-items: center
   document.getElementById("wawa").addEventListener("click", start);
 function start() {
 let Battle = battle()
-document.getElementById("winner").innerHTML = Battle[0];
-document.getElementById("text_A").innerHTML = Battle[1];
-document.getElementById("text_B").innerHTML = Battle[2];
-document.getElementById("lossesA").innerHTML = Battle[3];
-document.getElementById("lossesB").innerHTML = Battle[4];
-document.getElementById("RetreatA").innerHTML = Battle[5];
-document.getElementById("RetreatB").innerHTML = Battle[6];
-document.getElementById("A_captured").innerHTML = Battle[7];
-document.getElementById("B_captured").innerHTML = Battle[8];
+document.getElementById("winner").innerHTML = String(Battle[0]);
+document.getElementById("text_A").innerHTML = String(Battle[1]);
+document.getElementById("text_B").innerHTML = String(Battle[2]);
+document.getElementById("lossesA").innerHTML = String(Battle[3]);
+document.getElementById("lossesB").innerHTML = String(Battle[4]);
+document.getElementById("RetreatA").innerHTML = String(Battle[5]);
+document.getElementById("RetreatB").innerHTML = String(Battle[6]);
+document.getElementById("A_captured").innerHTML = String(Battle[7]);
+document.getElementById("B_captured").innerHTML = String(Battle[8]);
 }
 </script>
 
