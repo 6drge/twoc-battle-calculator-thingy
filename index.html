@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>twoc population growth calculator</title>
+
+<style>
+body {
+background-color: rgb(208, 164, 230);
+height: 100%;
+display: flex;
+justify-content: center;
+align-items: center;
+}
+.fish {
+display: flex;
+margin: 5px 0;
+flex-direction: column;
+align-items: center
+</style>
+</head>
+
+<body>
+
+<div id="grahh">
+<h1 id="hi">twoc population growth/decline tool thingy</h1>
+<div class="fish"> <h1 id="the">Population will appear here</h1> </div>
+<div class="fish">
+<label for="InputA">Army A:</label>
+<input type="text" id="textA" value="20">
+</div>
+<div class="fish">
+<label for="InputB">Army B:</label>
+<input type="number" id="textB" value="500">
+</div>
+  <div class="fish"> <h1 id="the">armies have 9 slots of data in twoc\n please format it with numbers like:\n troops, firepower, discipline, command, supply, terrain, biome, morale, unity</h1> </div>
+<div class="fish">
+  <button id="wawa">calculate</button>
+</div>
+<div class="fish">
+  <button id="wawa2">use new data</button>
+</div>
+  <div class="fish"> <h1 id="winner">winner will appear here</h1> </div>
+  <div class="fish"> <h1 id="text_A">New Army A will appear here</h1> </div>
+  <div class="fish"> <h1 id="text_B">New Army A will appear here</h1> </div>
+  <div class="fish"> <h1 id="lossesA">winner will appear here</h1> </div>
+  <div class="fish"> <h1 id="lossesB">winner will appear here</h1> </div>
+  <div class="fish"> <h1 id="RetreatA">winner will appear here</h1> </div>
+  <div class="fish"> <h1 id="RetreatB">winner will appear here</h1> </div>
+  <div class="fish"> <h1 id="A_captured">amount of captured units will appear here</h1> </div>
+  <div class="fish"> <h1 id="B_captured">winner will appear here</h1> </div>
+</div>
+<script src="main.js"></script>
+<script>
+  document.getElementById("wawa").addEventListener("click", start);
+function start() {
+let Battle = battle(A,B)
+document.getElementById("winner").innerHTML = Battle[0];
+document.getElementById("text_A").innerHTML = Battle[1];
+document.getElementById("text_A").innerHTML = Battle[2];
+document.getElementById("lossesA").innerHTML = Battle[3];
+document.getElementById("lossesB").innerHTML = Battle[4];
+document.getElementById("lossesA").innerHTML = Battle[5];
+document.getElementById("lossesB").innerHTML = Battle[6];
+document.getElementById("lossesA").innerHTML = Battle[7];
+document.getElementById("lossesB").innerHTML = Battle[8];
+	}
+console.log(typeof pop[0]);
+}
+</script>
+
+</body>
+</html>
