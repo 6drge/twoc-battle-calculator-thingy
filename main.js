@@ -37,49 +37,53 @@ function battle() {
   const A = Text_A.split(",").map(s => Number(s.trim()))
   const B = Text_B.split(",").map(s => Number(s.trim()))
   const power1 =
-    A.filter(n => !Number.isNaN(n)).reduce((acc, n) => acc * n, 1); //A.troops*A.firepower*A.discipline*A.command*A.supply*A.terrain*A.biome*A.morale*A[8];
+    A.filter(n => !Number.isNaN(n)).reduce((acc, n) => acc * n, 1); //A[0]*A.firepower*A[2]*A[3]*A[4]*A[5]*A[6]*A[7]*A[8];
 
   const power2 =
-    B.filter(n => !Number.isNaN(n)).reduce((acc, n) => acc * n, 1); //B.troops*B.firepower*B.discipline*B.command*B.supply*B.terrain*B.biome*B.morale*B[8];
+    B.filter(n => !Number.isNaN(n)).reduce((acc, n) => acc * n, 1); //B[0]*B.firepower*B[2]*B[3]*B[4]*B[5]*B[6]*B[7]*B[8];
 const ratio1 = power1/(power1 + power2);
   const ratio2 = 1-ratio1;
 
-  const lossFrac1 = Math.min(MaxLoss, lossNormalAmount + FrontlineCollapse * ratio1 * (DisciplineMax - A.discipline) * (Math.random()*Math.random()*0.1));
-  const lossFrac2 = Math.min(MaxLoss, lossNormalAmount + FrontlineCollapse * ratio2 * (DisciplineMax - B.discipline) * (Math.random()*Math.random()*0.1));
+  const lossFrac1 = Math.min(MaxLoss, lossNormalAmount + FrontlineCollapse * ratio1 * (DisciplineMax - A[2]) * (Math.random()*Math.random()*0.1));
+  const lossFrac2 = Math.min(MaxLoss, lossNormalAmount + FrontlineCollapse * ratio2 * (DisciplineMax - B[2]) * (Math.random()*Math.random()*0.1));
 
-  let losses1 = Math.round(A.troops * lossFrac1);
-  let losses2 = Math.round(B.troops * lossFrac2);
+  let losses1 = Math.round(A[0] * lossFrac1);
+  let losses2 = Math.round(B[0] * lossFrac2);
 
-  const moraleDamage1 = lossFrac1 * (MaxStress - A.discipline);
-  const moraleDamage2 = lossFrac2 * (MaxStress - B.discipline);
+  const moraleDamage1 = lossFrac1 * (MaxStress - A[2]);
+  const moraleDamage2 = lossFrac2 * (MaxStress - B[2]);
 
-  const LowMorale1 = A.morale - moraleDamage1 <= 0.25;
-  const LowMorale2 = B.morale - moraleDamage2 <= 0.25;
-  A[8] -= formatVal(lossFrac1 * (MaxStress - B.command) * Math.random() * 24.99,2);
-  B[8] -= formatVal(lossFrac1 * (MaxStress - B.command) * Math.random() * 24.99,2);
-  A.morale -= moraleDamage1 * Math.random() * 2.99
-  B.morale -= moraleDamage2 * Math.random() * 2.99
-  A.supply -= lossFrac1 * (MaxStress - (Math.random() * 16.59 * 0.1 * (B.terrain/A.terrain) * (B.biome/A.biome)))
-  B.supply -= lossFrac1 * (MaxStress - (Math.random() * 16.59 * 0.1 * (A.terrain/B.terrain) * (A.biome/B.biome)))
+  const LowMorale1 = A[7] - moraleDamage1 <= 0.25;
+  const LowMorale2 = B[7] - moraleDamage2 <= 0.25;
+  A[8] -= formatVal(lossFrac1 * (MaxStress - B[3]) * Math.random() * 24.99,2);
+  B[8] -= formatVal(lossFrac1 * (MaxStress - B[3]) * Math.random() * 24.99,2);
+  A[1] -= lossFrac1 * (MaxStress - (Math.random() * 16.59 * 0.1 * (B[1]/A[1]) * (B[3]/A[3])))
+  B[1] -= lossFrac1 * (MaxStress - (Math.random() * 16.59 * 0.1 * (A[1]/B[1]) * (A[3]/B[3])))
+  A[7] -= moraleDamage1 * Math.random() * 2.99
+  B[7] -= moraleDamage2 * Math.random() * 2.99
+  A[4] -= lossFrac1 * (MaxStress - (Math.random() * 16.59 * 0.1 * (B[5]/A[5]) * (B[6]/A[6])))
+  B[4] -= lossFrac1 * (MaxStress - (Math.random() * 16.59 * 0.1 * (A[5]/B[5]) * (A[6]/B[6])))
+  A[3] -= lossFrac1 * (MaxStress - (Math.random() * 16.59 * 0.1 * (B[8]/A[8]) * (B[2]/A[2])))
+  B[3] -= lossFrac1 * (MaxStress - (Math.random() * 16.59 * 0.1 * (A[8]/B[8]) * (A[2]/B[2])))
 
   if (LowMorale1 && !LowMorale2) {
     losses1 += Math.round(
-      (A.troops - losses1) * 0.1 * (B.command / A.command)
+      (A[0] - losses1) * 0.1 * (B[3] / A[3])
     );
   }
 
   if (LowMorale2 && !LowMorale1) {
     losses2 += Math.round(
-      (B.troops - losses2) * 0.1 * (A.command / B.command)
+      (B[0] - losses2) * 0.1 * (A[3] / B[3])
     );
   }
   var captured1=0;
   var captured2=0;
   if (A[8] <= 0.25) {
-    captured1 = Math.round(Math.max(0, A.troops - losses1) * 0.28);
+    captured1 = Math.round(Math.max(0, A[0] - losses1) * 0.28);
   }
   if (B[8] <= 0.25) {
-    captured2 = Math.round(Math.max(0, B.troops - losses1) * 0.28);
+    captured2 = Math.round(Math.max(0, B[0] - losses1) * 0.28);
   }
 
   let winner = "stalemate";
@@ -87,10 +91,10 @@ const ratio1 = power1/(power1 + power2);
   else if (LowMorale2 && !LowMorale1) winner = "A";
   else if (power1 > power2) winner = "A";
   else if (power2 > power1) winner = "B";
-  A_remaining = Math.max(0, A.troops - losses1 - captured1);
-  B_remaining = Math.max(0, B.troops - losses2 - captured2);
-  A.troops = A_remaining;
-  B.troops = B_remaining;
+  A_remaining = Math.max(0, A[0] - losses1 - captured1);
+  B_remaining = Math.max(0, B[0] - losses2 - captured2);
+  A[0] = A_remaining;
+  B[0] = B_remaining;
 
   return {
     winner,
