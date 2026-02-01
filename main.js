@@ -1,25 +1,25 @@
-let A = {
-  troops: 45000,
-  firepower: 1.1,
-  discipline: 1.0,
-  command: 1.2,
-  supply: 1.0,
-  terrain: 1.1,
-  biome: 1.25,
-  morale: 1.0,
-  unity: 1.0
-};
-let B = {
-  troops: 25000,
-  firepower: 1.1,
-  discipline: 1.0,
-  command: 1.2,
-  supply: 1.0,
-  terrain: 1.1,
-  biome: 1.25,
-  morale: 1.0,
-  unity: 0.25
-};
+//let A = {
+//  troops: 45000,
+//  firepower: 1.1,
+//  discipline: 1.0,
+//  command: 1.2,
+//  supply: 1.0,
+//  terrain: 1.1,
+//  biome: 1.25,
+//  morale: 1.0,
+//  unity: 1.0
+//};
+//let B = {
+//  troops: 25000,
+//  firepower: 1.1,
+//  discipline: 1.0,
+//  command: 1.2,
+//  supply: 1.0,
+//  terrain: 1.1,
+//  biome: 1.25,
+//  morale: 1.0,
+//  unity: 0.25
+//};
 
 const lossNormalAmount = 0.1
 const MaxLoss = 0.8
@@ -31,12 +31,14 @@ const formatVal = (val,precise = 3) =>{
   return Number(val).toFixed(precise)
 }
 
-function battle(A, B) {
+function battle() {
+  var Text_A = document.getElementById("textA").value;
+  var Text_B = document.getElementById("textB").value;
   const power1 =
-    A.troops*A.firepower*A.discipline*A.command*A.supply*A.terrain*A.biome*A.morale*A.unity;
+    const A = Text_A.split(",").map(s => Number(s.trim())).filter(n => !Number.isNaN(n)).reduce((acc, n) => acc * n, 1); //A.troops*A.firepower*A.discipline*A.command*A.supply*A.terrain*A.biome*A.morale*A.unity;
 
   const power2 =
-    B.troops*B.firepower*B.discipline*B.command*B.supply*B.terrain*B.biome*B.morale*B.unity;
+    const B = Text_A.split(",").map(s => Number(s.trim())).filter(n => !Number.isNaN(n)).reduce((acc, n) => acc * n, 1); //B.troops*B.firepower*B.discipline*B.command*B.supply*B.terrain*B.biome*B.morale*B.unity;
 const ratio1 = power1/(power1 + power2);
   const ratio2 = 1-ratio1;
 
@@ -100,11 +102,3 @@ const ratio1 = power1/(power1 + power2);
     B_captured: captured2
   };
 }
-
-var Text_A = document.getElementById("textA").value;
-var Text_B = document.getElementById("textB").value;
-
-console.log(battle(A,B))
-let Battle = battle(A,B)
-document.getElementById("text_A").innerHTML = Battle[2];
-document.getElementById("text_A").innerHTML = Battle[3];
