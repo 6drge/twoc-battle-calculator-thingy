@@ -102,8 +102,9 @@ const ratio1 = power1/(power1 + power2);
 }
 
 var Text_A = document.getElementById("textA").value;
-  document.getElementById("text_A").innerHTML = Text_A;
 var Text_B = document.getElementById("textB").value;
-  document.getElementById("text_A").innerHTML = Text_A;
 
 console.log(battle(A,B))
+let Battle = battle(A,B)
+document.getElementById("text_A").innerHTML = Battle[2];
+document.getElementById("text_A").innerHTML = Battle[3];
