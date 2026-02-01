@@ -55,15 +55,15 @@ align-items: center
 function start() {
 let Battle = battle()
   console.log(Battle)
-document.getElementById("winner").innerHTML = String(Battle[0]);
-document.getElementById("text_A").innerHTML = String(Battle[1]);
-document.getElementById("text_B").innerHTML = String(Battle[2]);
-document.getElementById("lossesA").innerHTML = String(Battle[3]);
-document.getElementById("lossesB").innerHTML = String(Battle[4]);
-document.getElementById("RetreatA").innerHTML = String(Battle[5]);
-document.getElementById("RetreatB").innerHTML = String(Battle[6]);
-document.getElementById("A_captured").innerHTML = String(Battle[7]);
-document.getElementById("B_captured").innerHTML = String(Battle[8]);
+document.getElementById("winner").innerHTML = String(Battle.winner);
+document.getElementById("text_A").innerHTML = String(Battle.A_New);
+document.getElementById("text_B").innerHTML = String(Battle.B_New);
+document.getElementById("lossesA").innerHTML = String(Battle.A_losses);
+document.getElementById("lossesB").innerHTML = String(Battle.B_losses);
+document.getElementById("RetreatA").innerHTML = String(Battle.Retreat1);
+document.getElementById("RetreatB").innerHTML = String(Battle.Retreat2);
+document.getElementById("A_captured").innerHTML = String(Battle.A_captured);
+document.getElementById("B_captured").innerHTML = String(Battle.B_captured);
 }
 </script>
 
